@@ -18,6 +18,7 @@ package net.bluxte.experiments.couchbase_keyvalue;
 // Original at https://github.com/couchbase/couchbase-jvm-core/blob/master/src/main/java/com/couchbase/client/core/endpoint/kv/KeyValueStatus.java
 // Additional implementations of valueOf at the bottom of this class
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -198,9 +199,7 @@ public enum KeyValueStatus {
     private static final KeyValueStatus[] code2status = new KeyValueStatus[0x100];
 
     static {
-        for (int i = 0; i < code2status.length; i++) {
-            code2status[i] = UNKNOWN;
-        }
+        Arrays.fill(code2status, UNKNOWN);
         for (KeyValueStatus keyValueStatus : values()) {
             if (keyValueStatus != UNKNOWN) {
                 code2status[keyValueStatus.code()] = keyValueStatus;
